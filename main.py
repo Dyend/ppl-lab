@@ -203,13 +203,15 @@ if __name__ == "__main__":
         """ Se verifica si por lo menos existen 3 vertices que es lo minimo para formar un espacio cerrado"""
         cerrado = espacio_cerrado(restricciones, vertices)
         if cerrado:
+            print(f'El conjunto de posibles soluciones es {vertices}')
             graficar_vertices(vertices)
             print('El espacio factible es cerrado y distinto de vacio')
             # Vertices ordenados con la coordenada X de menor a mayor
             vertices = sorted(vertices, key=lambda tup: (tup[0], tup[1]))
             graficar_espacio(vertices)
+            """ Si se desea minimzar cambiar por false"""
             optimo = obtener_optimo(vertices, True)
-            print(f' El valor optimo es en el vertice ({optimo[0]}, {optimo[1]})')
+            print(f'El valor optimo es en el vertice ({optimo[0]}, {optimo[1]})')
             ax = plt.subplot()
             ax.set_ylim(bottom=0)
             # set the x-spine (see below for more info on `set_position`)
