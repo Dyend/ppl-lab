@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Page Title</title>
+</head>
+
+<body>
+
+    <form id="myform" >
+        <div>
+            <h1>Funcion objetivo</h1>
+            <span>(Solo ingresar valores enteros, si tiene decimales multiplique por 10)</span>
+            <br>
+            <input name="f_obj_x" type="number" id="x_obj" style="width: 40px" min="0" value=2>
+            <label for="x1">X</label>
+            <select id="sum_resta" name="sum_resta">
+                <option selected value="suma">+</option>
+                <option value="resta">-</option>
+            </select>
+            <input name="f_obj_y" type="number" id="y_obj" style="width: 40px" min="0" value="1">
+            <label for="y1">Y</label>
+            <div style="margin-top: 40px">
+                <h2>Elija si desea maximizar o minimizar</h2>
+                <select id="min_max" name="min_max">
+                    <option value="minimizar">minimizar</option>
+                    <option selected value="maximizar">maximizar</option>
+                </select>
+            </div>
+        </div>
+        <div>
+            <h2>Restricciones</h2>
+            <span>(Solo ingresar valores enteros, si tiene decimales multiplique por 10)</span>
+            <br>
+            <button type="button" onclick="add()">Agregar otra</button>
+            <div id="restricciones">
+
+            </div>
+        </div>
+        <div style="margin-top: 50px;">
+            <h3>Presione guardar informacion y seleccione la ruta donde esta el script, luego cierre esta pestaña</h3>
+            <button >Guardar informacion</button>
+            <br>
+            <small>Si desea ocupar los datos anteriores cierre esta pestaña</small>
+        </div>
+    </form>
+    <div style="display: none;" id="restriccion_default">
+        <div style="margin-top: 10px">
+            <input name="x_restriccion_prefix" type="number" id ="x_restriccion_prefix" style="width: 40px" min="0" value="3">
+            <label>X</label>
+            <select name="sum_resta_prefix" id="sum_resta_prefix">
+                <option selected value="+">+</option>
+                <option value="-">-</option>
+            </select>
+            <input name="y_restriccion_prefix" id ="y_restriccion_prefix" type="number" style="width: 40px" min="0" value="5">
+            <label for="y1">Y</label>
+            <select name="operadores_prefix" id="operadores_prefix">
+                <option selected value="<="> <= </option>
+                <option value=">=">>=</option>
+                <option value="=">=</option>
+            </select>
+            <input type="number" name="resultado_prefix" id="resultado_prefix" style="width: 40px" min="0">
+        </div>
+    </div>
+    <input hidden type="number" min="0" value="0" id="counter">
+</body>
+
+<script>
+    function add() {
+        var restricciones = document.getElementById("restricciones");
+        var myDiv = document.getElementById("restriccion_default").innerHTML;
+        var contador = parseInt(document.getElementById("counter").value);
+        contador = contador + 1
+        myDiv = myDiv.replace(/prefix/g, contador);
+        myDiv = myDiv.replace(/display:none"/g, "display: true");
+        var new_div = document.createElement('div');
+        new_div.innerHTML = myDiv;
+
+        document.getElementById("counter").value = contador;
+        document.getElementById("restricciones").appendChild(new_div);
+    }
+    const userOrder = {};
+
+    function getValues(e) {
+        // turn form elements object into an array
+        const elements = Array.prototype.slice.call(e.target.elements);
+        
+        // go over the array storing input name & value pairs
+        elements.forEach((el) => {
+            if (el.type !== "submit") {
+                userOrder[el.name] = el.value;
+            }
+        });
+        
+        // finally save to localStorage
+        download(JSON.stringify(userOrder), 'json.txt', 'text/plain');
+        e.preventDefault();
+    }
+    function download(content, fileName, contentType) {
+        var a = document.createElement("a");
+        var file = new Blob([content], { type: contentType });
+        a.href = URL.createObjectURL(file);
+        a.download = fileName;
+        a.click();
+    }
+    document.getElementById("myform").addEventListener("submit", getValues);
+</script>
+
+
+</html>

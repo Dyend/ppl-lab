@@ -1,0 +1,1 @@
+{"f_obj_x":"4","sum_resta":"suma","f_obj_y":"1","min_max":"minimizar","":"","x_restriccion_1":"3","sum_resta_1":"+","y_restriccion_1":"5","operadores_1":">=","resultado_1":"120","x_restriccion_2":"1","sum_resta_2":"+","y_restriccion_2":"1","operadores_2":">=","resultado_2":"32"}
