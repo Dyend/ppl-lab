@@ -2,4 +2,6 @@ José Luis Alonso 19246151-0
 Juan Pablo Raab Meza 18766110-2
 Felipe Cespedes 19.787.201-2
 
-Debe cambiar la funcion objetivo en codigo, cambiar minimzar o maximizar en la linea 213 y las restricciones tambien
+Debe ejecutar el comando "python3 main.py" para iniciar el programa.
+Una vez iniciado seguir las instruciones del navegador y descargar el archivo en la carpeta raiz del programa.
+Con el json.txt en la carpeta raiz apretar ENTER para continuar la ejecición.
