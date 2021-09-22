@@ -35,7 +35,7 @@ def has_solution(matriz):
 
 # Funcion objetivo
 def funcion_objetivo(x, y):
-    return 4 * x + 6 * y
+    return 30 * x + 50 * y
 
 # Curva de nivel de la funcion objetivo
 def curva_nivel():
@@ -182,11 +182,10 @@ if __name__ == "__main__":
     restriccion_5 = Restriccion([1, 0], ">=", 0)
 
     x1 = 0 
-    restriccion_6 = Restriccion([0, 1], ">=", 10)
+    restriccion_6 = Restriccion([0, 1], ">=", 0)
 
-    y4 = 10
-    restriccion_x = Restriccion([-1, 1], "<=", -8)
-    yx = -8 + x
+    y4 = 0
+
     restricciones = [restriccion_1, restriccion_2, restriccion_3, restriccion_5, restriccion_6]
     plt.plot(x, y1, '-', linewidth=2, color='b')
     plt.plot(x, y2, '-', linewidth=2, color='g')
@@ -205,7 +204,7 @@ if __name__ == "__main__":
         cerrado = espacio_cerrado(restricciones, vertices)
         if cerrado:
             graficar_vertices(vertices)
-            print('El espacio factible es cerrado')
+            print('El espacio factible es cerrado y distinto de vacio')
             # Vertices ordenados con la coordenada X de menor a mayor
             vertices = sorted(vertices, key=lambda tup: (tup[0], tup[1]))
             graficar_espacio(vertices)
